@@ -1,0 +1,68 @@
+[workspace]
+members = ["bonfig-macros"]
+
+# `just release` bumps this version and the bonfig-macros pin with `cargo set-version`.
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+authors = [
+    "Evgeniy Tatarkin <tatarkin.evg@gmail.com>",
+    "Claude Opus 5.5 <noreply@anthropic.com>",
+]
+
+[package]
+name = "bonfig"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Layered app configuration on figment: defaults, files, and env vars"
+
+[dependencies]
+bon = "3"
+bonfig-macros = { version = "=0.1.0", path = "bonfig-macros" }
+figment = { version = "0.10", features = ["env"] }
+serde = { version = "1", features = ["derive"] }
+tracing = { version = "0.1", optional = true }
+
+[dev-dependencies]
+figment = { version = "0.10", features = ["test"] }
+serde_json = "1"
+
+[features]
+default = ["toml", "tracing"]
+toml = ["figment/toml"]
+json = ["figment/json"]
+yaml = ["figment/yaml"]
+# Logs each loaded file and the loaded configuration at `info`.
+tracing = ["dep:tracing"]
+# Enables figment::Jail as bonfig::figment::Jail for env and file tests.
+test = ["figment/test"]
+
+[[test]]
+name = "loader"
+required-features = ["toml"]
+
+[[test]]
+name = "lists_and_nested"
+required-features = ["toml"]
+
+[[test]]
+name = "settings_macro"
+required-features = ["toml"]
+
+[lints]
+workspace = true
+
+[workspace.lints.rust]
+unsafe_code = "deny"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+missing_errors_doc = { level = "allow", priority = 1 }
+missing_panics_doc = { level = "allow", priority = 1 }

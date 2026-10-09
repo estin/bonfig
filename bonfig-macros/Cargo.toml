@@ -1,0 +1,18 @@
+[package]
+name = "bonfig-macros"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "The #[bonfig::settings] attribute. Use it through the bonfig crate."
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1"
+quote = "1"
+syn = "2"
+
+[lints]
+workspace = true

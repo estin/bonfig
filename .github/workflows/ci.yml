@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # flake.nix pins every tool that `just ci` calls.
+      - uses: cachix/install-nix-action@v31
+
+      - name: just ci
+        run: nix develop --command just ci
