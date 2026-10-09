@@ -1,8 +1,9 @@
 # bonfig
 
-bonfig loads application configuration in layers. figment merges the layers,
-and bon builders hold the defaults. The crate keeps one way to do
-configuration for all my Rust apps.
+bonfig loads application configuration in layers.
+[figment](https://crates.io/crates/figment) merges the layers, and
+[bon](https://crates.io/crates/bon) builders hold the defaults. The crate
+keeps one way to do configuration for all my Rust apps.
 
 ## Layers
 
@@ -340,6 +341,11 @@ feature off.
 The author developed this crate with AI assistance. Claude, an AI model by
 Anthropic, wrote much of the code, the tests, and the documentation. The
 author directed the design and the decisions.
+
+## Related crates
+
+- [figment](https://crates.io/crates/figment) merges the layers.
+- [bon](https://crates.io/crates/bon) builds the settings structs.
 
 ## License
 
