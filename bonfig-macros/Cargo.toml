@@ -1,6 +1,7 @@
 [package]
 name = "bonfig-macros"
 version.workspace = true
+repository.workspace = true
 authors.workspace = true
 edition.workspace = true
 license.workspace = true
